@@ -256,34 +256,44 @@
         </div>
     </div>-->
 
-    
-
-    <!--Written crousel-->
-    <div class="reviews">
-        <h1>
-            <span>|</span>
-            Some Patients Reviews
-        </h1>
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <h1 class="display-4">SURYA ROYAL</h1>
+    <!--Written Crousel-->
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="jumbotron">
+                    <h1 class="display-4">danish dagar</h1>
                     <p class="lead">
-                        It's very well mannered staff good coordination with patients. Mrs. Praveena garu assisted very well and taken good care towards patients. Overall experience is satisfactory.
+                        Recently visited health check up department of Oreo Hospital for a whole body check up. The entire process from check in to the end was seamless. The staff at the health check department was courteous, helpful and very attentive. I would highly recommend this hospital to anyone looking for something similar services
                     </p>
-                </div>
-                <% myReviews.forEach(review => { %>
-                <div class="carousel-item">
-                    <h1 class="display-4"><%= review.name %></h1>
-                    <p class="lead">
-                        <%= review.feedback %>
+                    <p>
+                        <span>⭐</span>
+                        <span>⭐</span>
+                        <span>⭐</span>
+                        <span>⭐</span>
+                        <span>⭐</span>
                     </p>
-                </div>
-               <% }) %>
+                    <hr class="my-4" />
                 </div>
             </div>
+            <% ourfoundReviews.forEach(review => { %>
+            <div class="carousel-item">
+                <div class="jumbotron">
+                    <h1 class="display-4"><%= review.name %></h1>
+                    <p class="lead">
+                       <%= review.feedback %>
+                    </p>
+                    <p>
+                        <% for (let i = 0; i < review.rating ; i++) { %>
+                        <span>⭐</span>
+                        <% } %>
+                    </p>
+                    <hr class="my-4" />
+                </div>
+            </div>
+            <% }); %>
         </div>
     </div>
+   
     <%- include("footer") -%>
 </body>
 </html>

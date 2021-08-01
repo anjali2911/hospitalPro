@@ -76,7 +76,8 @@ const Appointment = mongoose.model("Appointment",appointSchema);
 // creating a reviews schema
 const reviewSchema = new mongoose.Schema({
     name:String,
-    feedback:String
+    feedback:String,
+    rating:Number
   });
 //  creating a model
 const Review = mongoose.model("Review", reviewSchema);
@@ -156,9 +157,11 @@ app.get("/department",(req,res)=>{
 app.get("/faq",(req,res)=>{
     Review.find({},(err,foundReviews)=>{
         if(!err){
-            res.render("faq",{
-                myReviews:foundReviews
-            })
+            if(foundReviews){
+                res.render("faq",{
+                    ourfoundReviews : foundReviews
+                });
+            }
         }
     })
 })
@@ -302,20 +305,23 @@ app.post("/appoint",(req,res)=>{
 
 
 app.post("/reviews", (req, res) => {
-    const name = req.body.reviname;
+    const reviname = req.body.reviname;
     const review = req.body.review;
+    const userRating = req.body.userRating;
+
     const review1 = new Review({
-      name:name,
+      name:reviname,
       feedback:review,
+      rating:userRating
     });
     review1.save();
     res.redirect("/faq")
-  });
+});
   
-  app.get("/logout",(req,res)=>{
-      req.logout();
-      res.redirect("/")
-  })
+app.get("/logout",(req,res)=>{
+    req.logout();
+    res.redirect("/")
+})
 
 
 
